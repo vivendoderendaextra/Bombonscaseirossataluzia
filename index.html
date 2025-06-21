@@ -1,0 +1,258 @@
+<!DOCTYPE html><html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>bombons.caseirossantaluzia</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #4E1F0D;
+      color: #fff;
+    }
+    header {
+      background-color: #2B0D04;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    header p {
+      margin-top: 5px;
+      font-style: italic;
+    }
+    .alert {
+      background-color: #C0392B;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .container {
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .product {
+      border: 1px solid #88422A;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+      background-color: #5C2A1D;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .product img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .product-details {
+      flex-grow: 1;
+    }
+    .form-section {
+      margin-top: 30px;
+      border-top: 2px solid #fff;
+      padding-top: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #8C2F0B;
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      width: 100%;
+    }
+    .total {
+      font-weight: bold;
+      margin-top: 10px;
+      font-size: 1.2em;
+    }
+    footer {
+      background-color: #2B0D04;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .rating-stars input {
+      display: none;
+    }
+    .rating-stars label {
+      font-size: 2em;
+      color: #ccc;
+      cursor: pointer;
+    }
+    .rating-stars input:checked ~ label,
+    .rating-stars label:hover,
+    .rating-stars label:hover ~ label {
+      color: gold;
+    }
+    .fixed-whatsapp {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      background-color: #25D366;
+      color: white;
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 24px;
+      z-index: 100;
+      text-decoration: none;
+    }
+    .success-message {
+      display: none;
+      background-color: #27ae60;
+      color: white;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 6px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body><header>
+  <h1>bombons.caseirossantaluzia</h1>
+  <p>Doces artesanais feitos com amor direto de Santa Luzia</p>
+</header>
+<div class="alert">⚠️ Pedidos só serão enviados após o pagamento via Pix e envio do comprovante.</div><div class="container">
+  <h2>🍬 Cardápio</h2>
+  <!-- Produtos existentes aqui -->  <div class="form-section">
+    <h2>💳 Pagamento</h2>
+    <div class="form-group">
+      <label>Seu nome:</label>
+      <input type="text" id="name" required>
+    </div>
+    <div class="form-group">
+      <label>Forma de pagamento:</label>
+      <select id="payment">
+        <option value="Pix">Pix (Pagamento antecipado obrigatório. Envie comprovante abaixo.)</option>
+        <option value="Cartão Indisponível">Cartão (Indisponível)</option>
+        <option value="Débito">Débito</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Comprovante de pagamento (caso Pix):</label>
+      <input type="file" id="pixFile">
+    </div>
+    <div class="form-group">
+      <label>Data desejada para retirada ou entrega:</label>
+      <input type="date" id="orderDate">
+    </div>
+    <p class="total">Total: R$ <span id="totalPrice">0.00</span></p>
+    <button id="sendBtn" onclick="sendWhatsApp()" disabled>Enviar Pedido via WhatsApp</button>
+    <div class="success-message" id="successMsg">✅ Pedido enviado com sucesso no WhatsApp!</div>
+  </div>  <div class="form-section">
+    <h2>⭐ Avalie nossos bombons</h2>
+    <div class="form-group">
+      <label>Dê sua nota:</label>
+      <div class="rating-stars">
+        <input type="radio" name="rating" id="star5"><label for="star5">⭐</label>
+        <input type="radio" name="rating" id="star4"><label for="star4">⭐</label>
+        <input type="radio" name="rating" id="star3"><label for="star3">⭐</label>
+        <input type="radio" name="rating" id="star2"><label for="star2">⭐</label>
+        <input type="radio" name="rating" id="star1"><label for="star1">⭐</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Deixe sua avaliação:</label>
+      <textarea rows="4" placeholder="Escreva o que achou..."></textarea>
+    </div>
+    <button>Enviar Avaliação</button>
+  </div>
+</div><a href="https://wa.me/559881139690" class="fixed-whatsapp" target="_blank">📩</a>
+
+<footer>
+  <p>Entre em contato: <a href="https://wa.me/559881139690" target="_blank">+55 98 8113-9690</a></p>
+  <p>Siga no Instagram: <a href="https://instagram.com/bombons.santaluzia" target="_blank">@bombons.santaluzia</a></p>
+</footer><script>
+  const inputs = document.querySelectorAll('.qty');
+  const totalPriceEl = document.getElementById('totalPrice');
+  const nameInput = document.getElementById('name');
+  const paymentSelect = document.getElementById('payment');
+  const pixFile = document.getElementById('pixFile');
+  const sendBtn = document.getElementById('sendBtn');
+  const successMsg = document.getElementById('successMsg');
+
+  function updateTotal() {
+    let total = 0;
+    inputs.forEach(input => {
+      const price = parseFloat(input.getAttribute('data-price'));
+      const qty = parseInt(input.value) || 0;
+      total += price * qty;
+    });
+    totalPriceEl.textContent = total.toFixed(2);
+  }
+
+  function validateForm() {
+    const name = nameInput.value.trim();
+    const payment = paymentSelect.value;
+    const isPix = payment === 'Pix';
+    const hasFile = pixFile.files.length > 0;
+    const hasQuantity = Array.from(inputs).some(input => parseInt(input.value) > 0);
+    sendBtn.disabled = !(name && (!isPix || hasFile) && hasQuantity);
+  }
+
+  inputs.forEach(input => input.addEventListener('input', () => {
+    updateTotal();
+    validateForm();
+  }));
+
+  nameInput.addEventListener('input', validateForm);
+  paymentSelect.addEventListener('change', validateForm);
+  pixFile.addEventListener('change', validateForm);
+
+  function sendWhatsApp() {
+    const name = nameInput.value;
+    const payment = paymentSelect.value;
+    const date = document.getElementById('orderDate').value;
+    let message = `Olá, meu nome é ${name}.%0AEsses são os bombons que desejo:%0A`;
+    let total = 0;
+
+    inputs.forEach(input => {
+      const qty = parseInt(input.value);
+      const prodName = input.getAttribute('data-name');
+      const price = parseFloat(input.getAttribute('data-price'));
+      if (qty > 0) {
+        message += `- ${qty}x ${prodName}%0A`;
+        total += qty * price;
+      }
+    });
+
+    message += `%0ATotal: R$ ${total.toFixed(2)}%0APagamento: ${payment}`;
+    if (date) message += `%0AData desejada: ${date}`;
+    message += `%0AComprovante enviado.`;
+
+    const phone = "559881139690";
+    const url = `https://wa.me/${phone}?text=${message}`;
+    window.open(url, "_blank");
+    successMsg.style.display = "block";
+  }
+
+  updateTotal();
+</script></body>
+</html>

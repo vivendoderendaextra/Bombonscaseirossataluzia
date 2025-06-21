@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -135,13 +136,45 @@
     }
   </style>
 </head>
-<body><header>
+<body>
+
+<header>
   <h1>bombons.caseirossantaluzia</h1>
   <p>Doces artesanais feitos com amor direto de Santa Luzia</p>
 </header>
-<div class="alert">⚠️ Pedidos só serão enviados após o pagamento via Pix e envio do comprovante.</div><div class="container">
+<div class="alert">⚠️ Pedidos só serão enviados após o pagamento via Pix (ou escolha Dinheiro em mãos).</div>
+
+<div class="container">
   <h2>🍬 Cardápio</h2>
-  <!-- Produtos existentes aqui -->  <div class="form-section">
+  <div class="product">
+    <img src="https://cdn.pixabay.com/photo/2016/12/26/17/28/chocolate-1939654_1280.jpg" alt="Paçoca">
+    <div class="product-details">
+      <h3>Bombom de Paçoca</h3>
+      <p>R$3,00 / unidade</p>
+      <label>Quantidade:</label>
+      <input type="number" class="qty" data-name="Paçoca" data-price="3.00" min="0" value="0">
+    </div>
+  </div>
+  <div class="product">
+    <img src="https://cdn.pixabay.com/photo/2017/03/10/13/39/chocolate-2136747_1280.jpg" alt="Maracujá">
+    <div class="product-details">
+      <h3>Bombom de Maracujá</h3>
+      <p>R$3,00 / unidade</p>
+      <label>Quantidade:</label>
+      <input type="number" class="qty" data-name="Maracujá" data-price="3.00" min="0" value="0">
+    </div>
+  </div>
+  <div class="product">
+    <img src="https://cdn.pixabay.com/photo/2015/03/26/09/54/chocolate-690212_1280.jpg" alt="Coco">
+    <div class="product-details">
+      <h3>Bombom de Coco</h3>
+      <p>R$3,00 / unidade</p>
+      <label>Quantidade:</label>
+      <input type="number" class="qty" data-name="Coco" data-price="3.00" min="0" value="0">
+    </div>
+  </div>
+
+  <div class="form-section">
     <h2>💳 Pagamento</h2>
     <div class="form-group">
       <label>Seu nome:</label>
@@ -153,6 +186,7 @@
         <option value="Pix">Pix (Pagamento antecipado obrigatório. Envie comprovante abaixo.)</option>
         <option value="Cartão Indisponível">Cartão (Indisponível)</option>
         <option value="Débito">Débito</option>
+        <option value="Dinheiro">Dinheiro (Pagamento em mãos na entrega)</option>
       </select>
     </div>
     <div class="form-group">
@@ -160,13 +194,15 @@
       <input type="file" id="pixFile">
     </div>
     <div class="form-group">
-      <label>Data desejada para retirada ou entrega:</label>
+      <label>Data desejada para retirada:</label>
       <input type="date" id="orderDate">
     </div>
     <p class="total">Total: R$ <span id="totalPrice">0.00</span></p>
     <button id="sendBtn" onclick="sendWhatsApp()" disabled>Enviar Pedido via WhatsApp</button>
     <div class="success-message" id="successMsg">✅ Pedido enviado com sucesso no WhatsApp!</div>
-  </div>  <div class="form-section">
+  </div>
+
+  <div class="form-section">
     <h2>⭐ Avalie nossos bombons</h2>
     <div class="form-group">
       <label>Dê sua nota:</label>
@@ -184,12 +220,16 @@
     </div>
     <button>Enviar Avaliação</button>
   </div>
-</div><a href="https://wa.me/559881139690" class="fixed-whatsapp" target="_blank">📩</a>
+</div>
+
+<a href="https://wa.me/559881139690" class="fixed-whatsapp" target="_blank">📩</a>
 
 <footer>
   <p>Entre em contato: <a href="https://wa.me/559881139690" target="_blank">+55 98 8113-9690</a></p>
   <p>Siga no Instagram: <a href="https://instagram.com/bombons.santaluzia" target="_blank">@bombons.santaluzia</a></p>
-</footer><script>
+</footer>
+
+<script>
   const inputs = document.querySelectorAll('.qty');
   const totalPriceEl = document.getElementById('totalPrice');
   const nameInput = document.getElementById('name');
@@ -245,14 +285,20 @@
 
     message += `%0ATotal: R$ ${total.toFixed(2)}%0APagamento: ${payment}`;
     if (date) message += `%0AData desejada: ${date}`;
-    message += `%0AComprovante enviado.`;
+    if (payment === 'Pix') message += `%0AComprovante enviado.`;
 
-    const phone = "559881139690";
+    const phone = \"559881139690\";
     const url = `https://wa.me/${phone}?text=${message}`;
-    window.open(url, "_blank");
-    successMsg.style.display = "block";
+    window.open(url, \"_blank\");
+    successMsg.style.display = \"block\";
   }
 
   updateTotal();
-</script></body>
+</script>
+
+</body>
 </html>
+
+
+
+
